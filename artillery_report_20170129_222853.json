@@ -1,0 +1,136 @@
+{
+  "aggregate": {
+    "timestamp": "2017-01-30T06:28:33.462Z",
+    "scenariosCreated": 1,
+    "scenariosCompleted": 1,
+    "requestsCompleted": 4,
+    "latency": {
+      "min": 16.2,
+      "max": 287.4,
+      "median": 24.8,
+      "p95": null,
+      "p99": null
+    },
+    "rps": {
+      "count": 4,
+      "mean": 8
+    },
+    "scenarioDuration": {
+      "min": 385.3,
+      "max": 385.3,
+      "median": 385.3,
+      "p95": null,
+      "p99": null
+    },
+    "scenarioCounts": {
+      "Basic tests for project 1": 1
+    },
+    "errors": {},
+    "codes": {
+      "500": 4
+    },
+    "matches": 0,
+    "customStats": {},
+    "phases": [
+      {
+        "duration": 10,
+        "arrivalCount": 1
+      }
+    ]
+  },
+  "intermediate": [
+    {
+      "timestamp": "2017-01-30T06:28:32.561Z",
+      "scenariosCreated": 0,
+      "scenariosCompleted": 0,
+      "requestsCompleted": 0,
+      "latency": {
+        "min": null,
+        "max": null,
+        "median": null,
+        "p95": null,
+        "p99": null
+      },
+      "rps": {
+        "count": 0,
+        "mean": null
+      },
+      "scenarioDuration": {
+        "min": null,
+        "max": null,
+        "median": null,
+        "p95": null,
+        "p99": null
+      },
+      "scenarioCounts": {},
+      "errors": {},
+      "codes": {},
+      "matches": 0,
+      "latencies": [],
+      "customStats": {},
+      "concurrency": 0,
+      "pendingRequests": 0
+    },
+    {
+      "timestamp": "2017-01-30T06:28:33.457Z",
+      "scenariosCreated": 1,
+      "scenariosCompleted": 1,
+      "requestsCompleted": 4,
+      "latency": {
+        "min": 16.2,
+        "max": 287.4,
+        "median": 24.8,
+        "p95": null,
+        "p99": null
+      },
+      "rps": {
+        "count": 4,
+        "mean": 8
+      },
+      "scenarioDuration": {
+        "min": 385.3,
+        "max": 385.3,
+        "median": 385.3,
+        "p95": null,
+        "p99": null
+      },
+      "scenarioCounts": {
+        "Basic tests for project 1": 1
+      },
+      "errors": {},
+      "codes": {
+        "500": 4
+      },
+      "matches": 0,
+      "latencies": [
+        [
+          1485757713246,
+          "6f49bf93-67f0-4c80-92bc-0ab70bbac472",
+          287363740,
+          500
+        ],
+        [
+          1485757713284,
+          "6f49bf93-67f0-4c80-92bc-0ab70bbac472",
+          31066558,
+          500
+        ],
+        [
+          1485757713303,
+          "6f49bf93-67f0-4c80-92bc-0ab70bbac472",
+          16160467,
+          500
+        ],
+        [
+          1485757713325,
+          "6f49bf93-67f0-4c80-92bc-0ab70bbac472",
+          18526157,
+          500
+        ]
+      ],
+      "customStats": {},
+      "concurrency": 1,
+      "pendingRequests": 1
+    }
+  ]
+}
