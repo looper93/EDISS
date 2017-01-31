@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pool = require('../conf/db');
-var session = require('session');
+var session = require('express-session');
 function IsNum(s) {
     if (s != null && s != "") {
       return !isNaN(s);
@@ -81,6 +81,7 @@ router.post('/login', function(req, res, next) {
         function (err, result) {
             connection.release();
             if(!err) {
+                console.log("database connected");
                 if(result[0]) {
                     console.log(result);
                     req.session.logged = true;
