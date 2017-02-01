@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var pool = require('../conf/db');
-var session = require('express-session');
+var pool = require('./db');
+
 function IsNum(s) {
     if (s != null && s != "") {
       return !isNaN(s);
@@ -10,9 +10,9 @@ function IsNum(s) {
 }
 
 router.post('/add', function(req, res, next) {
-    var num1 = req.json.num1;
-    var num2 = req.json.num2;
-    if (req.session.logged) {
+    var num1 = req.body.num1;
+    var num2 = req.body.num2;
+    if (!req.session.logged) {
         res.json({
             message: 'You are not currently logged in'
         });
@@ -24,15 +24,16 @@ router.post('/add', function(req, res, next) {
         });
     }
     else {
+        console.log("here we are");
         res.json({
             message:'The numbers you entered are not valid'
         });
     }
 });
 router.post('/divide', function(req, res, next) {
-    var num1 = req.json.num1;
-    var num2 = req.json.num2;
-    if (req.session.logged) {
+    var num1 = req.body.num1;
+    var num2 = req.body.num2;
+    if (!req.session.logged) {
         res.json({
             message: 'You are not currently logged in'
         });
@@ -50,9 +51,9 @@ router.post('/divide', function(req, res, next) {
     }
 });
 router.post('/multiply', function(req, res, next) {
-    var num1 = req.json.num1;
-    var num2 = req.json.num2;
-    if (req.session.logged) {
+    var num1 = req.body.num1;
+    var num2 = req.body.num2;
+    if (!req.session.logged) {
         res.json({
             message: 'You are not currently logged in'
         });
@@ -70,10 +71,11 @@ router.post('/multiply', function(req, res, next) {
     }
 });
 router.post('/login', function(req, res, next) {
-    var name = req.json.username;
-    var password = req.json.password;
+    var name = req.body.username;
+    var password = req.body.password;
     pool.getConnection(function (err, connection) {
         if (err) {
+            console.log("error on pool");
             res.redirect("/");
             return;
         }
@@ -83,19 +85,11 @@ router.post('/login', function(req, res, next) {
             if(!err) {
                 console.log("database connected");
                 if(result[0]) {
-                    console.log(result);
                     req.session.logged = true;
                     req.session.username = name;
-                    if (name == 'hsmith') {
-                        res.json({
-                            message:'Welcome Henry'
-                        });
-                    }
-                    else {
-                        res.json({
-                            message: 'Welcome ' + name
-                        });
-                    }
+                    res.json({
+                        message: 'Welcome ' + result[0].first_name
+                    });
                 }
                 else {
                     res.json({
