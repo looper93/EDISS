@@ -126,6 +126,12 @@ router.post('/registerUser', function (req, res, next) {
             res.redirect("/");
             return;
         }
+        if (req.body.username == "" || res.body.fname == "" || res.body.lname == "" || res.body.address == "" || res.body.city == "" || res.body.state ==""){
+            res.json({
+                message : 'The input you provided is not valid'
+            });
+            return;
+        }
         var query = connection.query('INSERT INTO user SET ?', req.body,
             function (err, result) {
                 connection.release();
@@ -256,6 +262,7 @@ router.post('/modifyProduct', function (req, res, next) {
     }
 });
 router.post('/viewUsers', function (req, res, next) {
+
     if (!req.session.logged) {
         res.json({
             message : 'You are not currently logged in'
