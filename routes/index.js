@@ -126,28 +126,37 @@ router.post('/registerUser', function (req, res, next) {
             res.redirect("/");
             return;
         }
-        if (req.body.username == "" || res.body.fname == "" || res.body.lname == "" || res.body.address == "" || res.body.city == "" || res.body.state ==""){
-            res.json({
-                message : 'The input you provided is not valid'
-            });
-            return;
-        }
-        var query = connection.query('INSERT INTO user SET ?', req.body,
-            function (err, result) {
-                connection.release();
+        try {
+            if (req.body.username == "" || req.body.fname == ""
+                || req.body.lname == "" || req.body.address == ""
+                || req.body.city == "" || req.body.state == ""
+                || req.body.zip == "" || req.body.email == ""
+                || req.body.password == "") {
+                res.json({
+                    message: 'The input you provided is not valid'
+                });
+                return;
+            }
+            var query = connection.query('INSERT INTO user SET ?', req.body,
+                function (err, result) {
+                    connection.release();
 
-                if(!err) {
-                    res.json({
-                        message : req.body.fname + ' was registered successfully'
-                    });
-                }
-                else {
-                    res.json({
-                        message : 'The input you provided is not valid'
-                    });
-                }
+                    if (!err) {
+                        res.json({
+                            message: req.body.fname + ' was registered successfully'
+                        });
+                    }
+                    else {
+
+                    }
+                });
+            console.log(query.sql);
+        }catch(e) {
+            res.json({
+                message: 'The input you provided is not valid'
             });
-        console.log(query.sql);
+        }
+
     });
 });
 router.post('/updateInfo', function (req, res, next) {
