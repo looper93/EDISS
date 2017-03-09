@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pool = require('./db');
+var cookie = require('cookie');
 
 router.get('/', function(req, res, next) {
     res.json({
@@ -26,6 +27,9 @@ router.post('/login', function(req, res, next) {
                         req.session.logged = true;
                         req.session.username = name;
                         req.session.fname = result[0].fname;
+
+                        console.log(req.session);
+
                         res.json({
                             message: 'Welcome ' + req.session.fname
                         });
@@ -77,14 +81,15 @@ router.post('/registerUser', function (req, res, next) {
             var query = connection.query('INSERT INTO user SET ?', req.body,
                 function (err, result) {
                     connection.release();
-
                     if (!err) {
                         res.json({
                             message: req.body.fname + ' was registered successfully'
                         });
                     }
                     else {
-
+                        res.json({
+                            message: 'The input you provided is not valid'
+                        });
                     }
                 });
             console.log(query.sql);

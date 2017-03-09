@@ -6,16 +6,17 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "artillery": "latest",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "debug": "latest",
     "express": "~4.14.0",
+    "express-mysql-session": "^1.2.0",
+    "express-session": "latest",
     "jade": "~1.11.0",
     "morgan": "~1.7.0",
-    "serve-favicon": "~2.3.0",
     "mysql": "latest",
-    "artillery": "latest",
-    "session": "latest",
-    "express-session": "latest"
+    "serve-favicon": "~2.3.0",
+    "session": "latest"
   }
 }

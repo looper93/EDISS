@@ -4,16 +4,22 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var pool = require('./routes/db');
 
 var index = require('./routes/index');
 var app = express();
 var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
+var sessionStore = new MySQLStore({}, pool);
+
 app.use(session({
-    secret: 'giowehggbak',
-    resave: false,
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: true,
     saveUninitialized: true
 }));
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -44,7 +50,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-})
+});
 
 
 app.listen(3000);
