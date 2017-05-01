@@ -17,6 +17,9 @@
     "morgan": "~1.7.0",
     "mysql": "latest",
     "serve-favicon": "~2.3.0",
-    "session": "latest"
+    "session": "latest",
+    "co": "^4.6.0",
+    "co-mysql": "^1.0.0",
+    "line-reader": "latest"
   }
 }

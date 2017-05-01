@@ -1,0 +1,10 @@
+# 连接AWS 数据库
+export PATH="$PATH:/usr/local/mysql/bin"
+mysql -h ediss.ckmuc2yg8ii6.us-west-2.rds.amazonaws.com -P 3306 -u root -p
+
+# 连接AWS 服务器
+cd Documents
+ssh -i "password.pem" ec2-user@ec2-52-25-31-46.us-west-2.compute.amazonaws.com
+地址 ： http://52.25.31.46:3000
+
+ec2-34-209-161-100.us-west-2.compute.amazonaws.com
